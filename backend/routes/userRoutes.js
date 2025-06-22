@@ -39,5 +39,16 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// PATCH /api/v1/services/:id
+router.patch('/:id', async (req, res) => {
+  const updated = await Service.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(updated);
+});
+
+// DELETE /api/v1/services/:id
+router.delete('/:id', async (req, res) => {
+  await Service.findByIdAndDelete(req.params.id);
+  res.json({ message: 'Deleted successfully' });
+});
 
 export default router;

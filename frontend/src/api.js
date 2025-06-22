@@ -18,3 +18,9 @@ export const createUser = (user) =>
 
 export const updateUser=(id, user) =>
   axios.patch(`${BASE_URL}/${id}`, user).then((res) => res.data);
+
+export const updateService = ({ id, data }) =>
+  axios.patch(`${BASE_URL}/services/${id}`, data).then((res) => res.data);
+
+export const deleteService = (id) =>
+  axios.delete(`${BASE_URL}/services/${id}`).then((res) => res.data);

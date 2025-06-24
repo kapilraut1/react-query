@@ -6,6 +6,7 @@ import UserDashboard from './components/UserDashboard'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import AddUserForm from './components/AddForm'
 import ManageServices from './components/ManageServices'
+import AddPlan from './components/AddPlan'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +17,7 @@ function App() {
       <AddUserForm />
     <UserDashboard />
     <ManageServices />
+    <AddPlan />
     </QueryClientProvider>
     </>
   )

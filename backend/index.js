@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoutes from './routes/userRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
+import planRoutes from './routes/planRoutes.js';
 dotenv.config();
 
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/v1/services", serviceRoutes);
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/plans', planRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

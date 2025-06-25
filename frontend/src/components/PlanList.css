@@ -1,0 +1,31 @@
+.plan-list {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.plan-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #f9f9f9;
+}
+
+.plan-card.active {
+  border-left: 6px solid green;
+}
+
+.plan-card.inactive {
+  border-left: 6px solid red;
+}
+
+.services ul {
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}

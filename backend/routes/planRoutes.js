@@ -15,5 +15,17 @@ router.get("/", async (req, res) => {
   const plans = await Plan.find().populate("serviceIds");
   res.json(plans);
 });
+// PATCH - Update plan
+router.patch("/:id", async (req, res) => {
+  const updated = await Plan.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(updated);
+});
+
+// DELETE - Delete plan
+router.delete("/:id", async (req, res) => {
+  await Plan.findByIdAndDelete(req.params.id);
+  res.json({ message: "Plan deleted" });
+});
+
 
 export default router;

@@ -8,6 +8,7 @@ import AddUserForm from './components/AddForm'
 import ManageServices from './components/ManageServices'
 import AddPlan from './components/AddPlan'
 import PlanList from './components/PlanList'
+import PlanDashboard from './components/PlanDashboard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,6 +21,7 @@ function App() {
     <ManageServices />
     <AddPlan />
     <PlanList />
+    <PlanDashboard />
     </QueryClientProvider>
     </>
   )

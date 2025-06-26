@@ -42,5 +42,17 @@ export const deleteService = async (id) => {
 };
 
 //plans
+export const fetchPlans = async () => {
+  const res = await axios.get(P_BASE_URL);
+  return res.data;
+};
+
 export const createPlan = async (data) =>
   axios.post(`${P_BASE_URL}`, data).then((res) => res.data);
+// Update plan
+export const updatePlan = (payload) =>
+  axios.patch(`http://localhost:3000/api/v1/plans/${payload.id}`, payload.data).then(res => res.data);
+
+// Delete plan
+export const deletePlan = (id) =>
+  axios.delete(`http://localhost:3000/api/v1/plans/${id}`).then(res => res.data);

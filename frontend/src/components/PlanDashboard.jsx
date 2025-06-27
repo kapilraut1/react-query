@@ -10,7 +10,7 @@ export default function PlanDashboard() {
     name: "",
     price: "",
     billingCycle: "",
-    isActive: true,
+    
     serviceIds: [],
   });
 

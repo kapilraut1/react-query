@@ -47,12 +47,13 @@ export const fetchPlans = async () => {
   return res.data;
 };
 
-export const createPlan = async (data) =>
-  axios.post(`${P_BASE_URL}`, data).then((res) => res.data);
-// Update plan
-export const updatePlan = (payload) =>
-  axios.patch(`http://localhost:3000/api/v1/plans/${payload.id}`, payload.data).then(res => res.data);
+export const createPlan = (data) =>
+  axios.post(P_BASE_URL, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  }).then((res) => res.data);
 
-// Delete plan
+export const updatePlan = ({ id, data }) =>
+  axios.patch(`${P_BASE_URL}/${id}`, data).then((res) => res.data);
+
 export const deletePlan = (id) =>
-  axios.delete(`http://localhost:3000/api/v1/plans/${id}`).then(res => res.data);
+  axios.delete(`${P_BASE_URL}/${id}`).then((res) => res.data);

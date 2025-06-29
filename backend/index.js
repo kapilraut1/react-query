@@ -18,6 +18,8 @@ app.use(express.json());
 app.use("/api/v1/services", serviceRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/plans', planRoutes);
+app.use("/uploads", express.static("uploads"));
+
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

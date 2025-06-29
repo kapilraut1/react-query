@@ -1,7 +1,29 @@
 import express from "express";
 import Plan from "../models/Plan.js";
-
+import upload from "../middlewares/upload.js";
 const router = express.Router();
+
+
+router.post("/", upload.single("image"), async (req, res) => {
+  try {
+    const { name, price, billingCycle, isActive, serviceIds } = req.body;
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
+    const newPlan = new Plan({
+      name,
+      price,
+      billingCycle,
+      isActive,
+      serviceIds,
+      imageUrl,
+    });
+
+    await newPlan.save();
+    res.status(201).json(newPlan);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // POST /api/v1/plans
 router.post("/", async (req, res) => {

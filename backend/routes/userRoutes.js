@@ -16,39 +16,30 @@ router.post('/', async (req, res) => {
   res.status(201).json(newUser);
 });
 
-router.patch('/:id', async (req, res) => {
+// PATCH update route
+router.put('/:id', async (req, res) => {
   try {
-    const updated = await User.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    res.json(updated);
+    if (!updatedUser) return res.status(404).send("User not found");
+    res.json(updatedUser);
   } catch (err) {
-    res.status(500).json({ message: "Failed to update", error: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
-
-// DELETE user by ID
+// DELETE user route
 router.delete('/:id', async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
-    if (!deletedUser) return res.status(404).json({ message: 'User not found' });
+    if (!deletedUser) return res.status(404).send("User not found");
     res.json({ message: 'User deleted successfully' });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ error: err.message });
   }
 });
 
-// PATCH /api/v1/services/:id
-router.patch('/:id', async (req, res) => {
-  const updated = await Service.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updated);
-});
 
-// DELETE /api/v1/services/:id
-router.delete('/:id', async (req, res) => {
-  await Service.findByIdAndDelete(req.params.id);
-  res.json({ message: 'Deleted successfully' });
-});
 
 export default router;

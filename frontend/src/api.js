@@ -4,21 +4,12 @@ import axios from "axios";
 const BASE_URL = "http://localhost:3000/api/v1/users";
 const T_BASE_URL = "http://localhost:3000/api/v1/services";
 const P_BASE_URL = "http://localhost:3000/api/v1/plans";
-export const fetchUsers = async () => {
-  const res = await axios.get(BASE_URL);
-  return res.data;
-};
-
-export const deleteUser = (id) =>
-  axios.delete(`${BASE_URL}/${id}`).then((res) => res.data);
 
 
-export const createUser = (user) =>
-  axios.post(BASE_URL, user).then((res) => res.data); 
-
-
-export const updateUser=(id, user) =>
-  axios.patch(`${BASE_URL}/${id}`, user).then((res) => res.data);
+export const fetchUsers = () => axios.get(BASE_URL).then(res => res.data);
+export const createUser = (data) => axios.post(BASE_URL, data).then(res => res.data);
+export const updateUser = ({ id, data }) => axios.put(`${BASE_URL}/${id}`, data).then(res => res.data);
+export const deleteUser = (id) => axios.delete(`${BASE_URL}/${id}`).then(res => res.data);
 
 //services
 export const fetchServices = async () => {

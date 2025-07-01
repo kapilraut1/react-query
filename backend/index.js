@@ -7,6 +7,9 @@ import userRoutes from './routes/userRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import planRoutes from './routes/planRoutes.js';
 dotenv.config();
+import authRoutes from './routes/authRoutes.js';
+
+
 
 
 const app = express();
@@ -19,7 +22,7 @@ app.use("/api/v1/services", serviceRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/plans', planRoutes);
 app.use("/uploads", express.static("uploads"));
-
+app.use('/api/v1/auth', authRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

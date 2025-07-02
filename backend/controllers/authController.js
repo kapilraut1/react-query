@@ -1,41 +1,15 @@
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import User from "../models/User";
+export const login = async (req, res) => {
+  const { email, password } = req.body;
 
+  const hardcoded = {
+    email: "kapil@gmail.com",
+    password: "admin123",
+  };
 
-const JWT_SECRET = process.env.JWT_SECRET || "my-secret";
-
-export const loginUser = async (req, res) => {
-  const [email, password] = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user)
-      return res.status(401).json({
-        message: "Not valid email",
-      });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
-      return res.status(401).json({
-        message: "Invalid",
-      });
-
-    const token = jwt.sign(
-      {
-        userId: user._id,
-        role: user.role,
-      },
-      JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
-
-    res.json({ token });
-  } catch (err) {
-    res.status(500).json({
-      error: err.message,
-    });
+  if (email === hardcoded.email && password === hardcoded.password) {
+    return res.status(200).json({ success: true, message: "Login successful" });
+  } else {
+    return res.status(401).json({ success: false, message: "Invalid credentials" });
   }
 };
+

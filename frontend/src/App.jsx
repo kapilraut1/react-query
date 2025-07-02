@@ -10,22 +10,37 @@ import AddForm from './components/AddPlan'
 import PlanList from './components/PlanList'
 import PlanDashboard from './components/PlanDashboard'
 import { ToastContainer } from 'react-toastify'
-
-
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute'
+import Admin from './pages/Admin'
+import { BrowserRouter, Routes, Route } from "react-router";
 function App() {
 
   const queryClient = new QueryClient()
   return (
     <>
-    <QueryClientProvider client={queryClient}>
-      <ToastContainer />
-    
-    <UserDashboard />
-    {/* <ManageServices />
-    <AddForm />
-    <PlanList />
-    <PlanDashboard /> */}
-    </QueryClientProvider>
+    {/* <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Admin />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+   
+    </QueryClientProvider> */}
+     <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

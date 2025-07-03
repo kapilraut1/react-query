@@ -1,5 +1,7 @@
 import express from 'express';
 import User from '../models/User.js';
+import authMiddleware from '../middlewares/authMiddleware.js';
+import { getUsers } from '../controllers/authController.js';
 
 const router = express.Router();
 
@@ -40,6 +42,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-
+router.get('/', authMiddleware, getUsers)
 
 export default router;

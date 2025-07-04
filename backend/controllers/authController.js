@@ -3,12 +3,7 @@ import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret"; // use .env later
-const seedUser = async () => {
-  const hashed = await bcrypt.hash("admin123", 10);
-  const user = new User({ name: "Kapil", email: "kapil@gmail.com", password: hashed });
-  await user.save();
-  console.log("Seeded admin user");
-};
+
 
 
 export const loginUser = async (req, res) => {
